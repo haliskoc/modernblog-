@@ -1,0 +1,1 @@
+Privacy placeholder. Configure analytics with consent and document data usage here.

@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap');
+
+:root {
+  --color-primary: #2E8B57;
+  --color-secondary: #E5D3B3;
+  --color-accent: #FF7A18;
+  --color-bg: #F7F8FA;
+  --color-text: #0F1724;
+  --color-muted: #6B7280;
+  --color-surface: #FFFFFF;
+  --color-border: #D1D5DB;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --shadow-block: 4px 4px 0px rgba(0,0,0,0.2);
+  --radius-block: 0px;
+}
+
+.dark {
+  --color-bg: #0B1220;
+  --color-text: #F3F4F6;
+  --color-muted: #9CA3AF;
+  --color-surface: #111827;
+  --color-border: #374151;
+  --shadow-block: 4px 4px 0px rgba(0,0,0,0.5);
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Pixel font for headings */
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+}
+
+/* Blocky card style */
+.card-block {
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
+  box-shadow: var(--shadow-block);
+  border-radius: var(--radius-block);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card-block:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.25);
+}
+
+/* Minecraft-style button */
+.btn-minecraft {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-primary);
+  color: white;
+  border: 3px solid #1F6B40;
+  border-bottom-color: #164D2E;
+  border-right-color: #164D2E;
+  box-shadow: var(--shadow-block);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.1s;
+}
+
+.btn-minecraft:hover {
+  background: #3AA76D;
+  transform: translate(-1px, -1px);
+}
+
+.btn-minecraft:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Secondary button */
+.btn-secondary {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-secondary);
+  color: var(--color-text);
+  border: 3px solid #C9B896;
+  border-bottom-color: #A89A78;
+  border-right-color: #A89A78;
+  box-shadow: var(--shadow-block);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.1s;
+}
+
+.btn-secondary:hover {
+  background: #F0E4CC;
+}
+
+/* Accent badge */
+.badge-accent {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-accent);
+  color: white;
+  border: 2px solid #D96510;
+}
+
+/* Prose styling for blog content */
+.prose {
+  font-family: var(--font-body);
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  font-family: var(--font-pixel);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h1 { font-size: 1.25rem; }
+.prose h2 { font-size: 1rem; }
+.prose h3 { font-size: 0.85rem; }
+
+.prose code {
+  font-family: var(--font-mono);
+  background: var(--color-secondary);
+  padding: 0.125rem 0.25rem;
+  border: 1px solid var(--color-border);
+}
+
+.prose pre {
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
+  box-shadow: var(--shadow-block);
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Pixel art border pattern */
+.border-pixel {
+  border: 4px solid;
+  border-image: repeating-linear-gradient(
+    45deg,
+    var(--color-primary),
+    var(--color-primary) 2px,
+    var(--color-secondary) 2px,
+    var(--color-secondary) 4px
+  ) 4;
+}
