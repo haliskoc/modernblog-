@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Footer(){
   return (
     <footer className="bg-[var(--color-surface)] border-t-4 border-[var(--color-border)] mt-12">
@@ -20,12 +22,12 @@ export default function Footer(){
             © {new Date().getFullYear()} VOXEL BLOG. BUILT WITH BLOCKS.
           </div>
           <div className="flex gap-4">
-            <a href="/rss.xml" className="font-pixel text-[0.5rem] text-primary hover:text-accent transition-colors">
+            <Link href="/rss.xml" className="font-pixel text-[0.5rem] text-primary hover:text-accent transition-colors">
               RSS
-            </a>
-            <a href="/privacy" className="font-pixel text-[0.5rem] text-primary hover:text-accent transition-colors">
+            </Link>
+            <Link href="/privacy" className="font-pixel text-[0.5rem] text-primary hover:text-accent transition-colors">
               PRIVACY
-            </a>
+            </Link>
           </div>
         </div>
       </div>

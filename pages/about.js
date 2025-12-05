@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Layout from '../components/Layout'
 
 export default function About(){
@@ -37,11 +38,11 @@ export default function About(){
           <h2 className="font-pixel text-[0.7rem] text-accent">CONTRIBUTE</h2>
         </div>
         <p className="text-sm text-[var(--color-muted)] font-body">
-          Have an idea for a build or tutorial? We'd love to hear it! Submit your suggestions on our Ideas page.
+          Have an idea for a build or tutorial? We&apos;d love to hear it! Submit your suggestions on our Ideas page.
         </p>
-        <a href="/ideas" className="inline-block mt-4 btn-minecraft">
+        <Link href="/ideas" className="inline-block mt-4 btn-minecraft">
           Submit Idea
-        </a>
+        </Link>
       </div>
 
       {/* Team / Author placeholder */}
