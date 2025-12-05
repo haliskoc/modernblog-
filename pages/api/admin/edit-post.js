@@ -1,13 +1,11 @@
 import { getAdminSession } from '../../../lib/auth'
-import fs from 'fs'
-import path from 'path'
+import { supabaseAdmin } from '../../../lib/supabase'
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'PUT') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  // Admin kontrolü
   if (!getAdminSession(req)) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
@@ -19,26 +17,28 @@ export default function handler(req, res) {
   }
 
   try {
-    const filePath = path.join(process.cwd(), 'content', 'posts', `${slug}.md`)
+    const { data, error } = await supabaseAdmin
+      .from('posts')
+      .update({
+        title,
+        description,
+        content,
+        category,
+        image_url: imageUrl,
+        updated_at: new Date().toISOString()
+      })
+      .eq('slug', slug)
+      .select()
 
-    if (!fs.existsSync(filePath)) {
+    if (error) {
+      return res.status(400).json({ error: error.message })
+    }
+
+    if (!data || data.length === 0) {
       return res.status(404).json({ error: 'Post not found' })
     }
 
-    // Markdown formatında dosya güncelle (frontmatter ile)
-    const frontmatter = `---
-title: "${title.replace(/"/g, '\\"')}"
-date: "${new Date().toISOString().split('T')[0]}"
-description: "${(description || '').replace(/"/g, '\\"')}"
-category: "${category || 'Tutorial'}"
-${imageUrl ? `image: "${imageUrl}"` : ''}
----
-
-${content}`
-
-    fs.writeFileSync(filePath, frontmatter, 'utf-8')
-
-    return res.status(200).json({ success: true, slug })
+    return res.status(200).json({ success: true, slug, data })
   } catch (error) {
     console.error(error)
     return res.status(500).json({ error: 'Server error: ' + error.message })

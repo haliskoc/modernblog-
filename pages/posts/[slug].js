@@ -70,17 +70,25 @@ export default function Post({ postData }){
   )
 }
 
-export async function getStaticPaths(){
-  const paths = getAllPostSlugs()
+export async function getStaticPaths() {
+  const paths = await getAllPostSlugs()
   return {
     paths,
-    fallback: false
+    fallback: 'blocking'
   }
 }
 
-export async function getStaticProps({ params }){
+export async function getStaticProps({ params }) {
   const postData = await getPostData(params.slug)
+  
+  if (!postData) {
+    return {
+      notFound: true
+    }
+  }
+
   return {
-    props: { postData }
+    props: { postData },
+    revalidate: 3600 // Revalidate every hour
   }
 }

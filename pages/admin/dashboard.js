@@ -369,7 +369,7 @@ export default function AdminDashboard({ posts, isAdmin }) {
   )
 }
 
-export function getServerSideProps({ req }) {
+export async function getServerSideProps({ req }) {
   const isAdmin = getAdminSession(req)
 
   if (!isAdmin) {
@@ -381,7 +381,7 @@ export function getServerSideProps({ req }) {
     }
   }
 
-  const posts = getSortedPostsData()
+  const posts = await getSortedPostsData()
 
   return {
     props: { posts, isAdmin: true }

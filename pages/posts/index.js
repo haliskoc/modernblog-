@@ -71,9 +71,10 @@ export default function Posts({ allPostsData }){
   )
 }
 
-export async function getStaticProps(){
-  const allPostsData = getSortedPostsData()
+export async function getStaticProps() {
+  const allPostsData = await getSortedPostsData()
   return {
-    props: { allPostsData }
+    props: { allPostsData },
+    revalidate: 3600 // Revalidate every hour
   }
 }
