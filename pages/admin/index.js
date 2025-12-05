@@ -79,10 +79,6 @@ export default function AdminLogin() {
               {loading ? 'Kontrol ediliyor...' : 'GİR'}
             </button>
           </form>
-
-          <div className="mt-6 p-3 bg-cream border-2 border-cream-dark text-[0.5rem] font-pixel text-[var(--color-muted)]">
-            💡 Demo şifresi: admin123 (üretim için .env değişkenini kullan)
-          </div>
         </div>
       </div>
     </>
