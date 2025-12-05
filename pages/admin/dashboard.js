@@ -384,7 +384,6 @@ export function getServerSideProps({ req }) {
   const posts = getSortedPostsData()
 
   return {
-    props: { posts, isAdmin: true },
-    revalidate: 10
+    props: { posts, isAdmin: true }
   }
 }
