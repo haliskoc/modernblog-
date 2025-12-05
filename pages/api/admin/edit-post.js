@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 
 export default function handler(req, res) {
-  if (req.method !== 'POST') {
+  if (req.method !== 'PUT') {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
@@ -19,21 +19,13 @@ export default function handler(req, res) {
   }
 
   try {
-    const postsDir = path.join(process.cwd(), 'content', 'posts')
-    
-    // Klasörün varlığını kontrol et
-    if (!fs.existsSync(postsDir)) {
-      fs.mkdirSync(postsDir, { recursive: true })
+    const filePath = path.join(process.cwd(), 'content', 'posts', `${slug}.md`)
+
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: 'Post not found' })
     }
 
-    const filePath = path.join(postsDir, `${slug}.md`)
-
-    // Dosya zaten varsa hata ver
-    if (fs.existsSync(filePath)) {
-      return res.status(400).json({ error: 'Post already exists' })
-    }
-
-    // Markdown formatında dosya oluştur (frontmatter ile)
+    // Markdown formatında dosya güncelle (frontmatter ile)
     const frontmatter = `---
 title: "${title.replace(/"/g, '\\"')}"
 date: "${new Date().toISOString().split('T')[0]}"
